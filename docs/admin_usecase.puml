@@ -1,0 +1,43 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Admin as admin
+
+rectangle "Admin Portal" {
+  usecase "Login to System" as UC1
+  usecase "Add Module" as UC2
+  usecase "Edit Module" as UC3
+  usecase "Delete Module" as UC4
+  usecase "Manage Modules" as UC5
+  usecase "Add Quiz Questions" as UC6
+  usecase "Edit Quiz Questions" as UC7
+  usecase "Delete Quiz Questions" as UC8
+  usecase "Manage Quiz Questions" as UC9
+  usecase "View All Students" as UC10
+  usecase "View Student Progress" as UC11
+  usecase "View Student Scores" as UC12
+}
+
+admin --> UC1
+UC1 ..> UC5 : <<include>>
+admin --> UC2
+admin --> UC3
+admin --> UC4
+UC5 --> UC2
+UC5 --> UC3
+UC5 --> UC4
+
+admin --> UC9
+admin --> UC6
+admin --> UC7
+admin --> UC8
+UC9 --> UC6
+UC9 --> UC7
+UC9 --> UC8
+
+admin --> UC10
+admin --> UC11
+admin --> UC12
+
+@enduml
