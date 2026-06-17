@@ -317,3 +317,159 @@ The user responsible for managing content, quizzes, and student records.
 
 ### use case diagram
 IMAGE:https://raw.githubusercontent.com/rithika-art/let-s_learn_constitution/refs/heads/main/docs/images/student%20use%20case%20diagram.jfif
+
+# Database Requirement Analysis
+
+## Purpose
+
+The Constitution Learning System requires a database to store user information, learning modules, quiz questions, quiz results, and progress tracking data. The database ensures secure storage, efficient retrieval, and proper management of educational content.
+
+---
+
+## Data Requirements
+
+The system must store the following information:
+
+### 1. User Information
+
+Stores details of students and administrators.
+
+Attributes:
+- User ID
+- Full Name
+- Email
+- Password
+- Role (Student/Admin)
+- Registration Date
+
+---
+
+### 2. Constitution Modules
+
+Stores educational content related to the Constitution.
+
+Attributes:
+- Module ID
+- Module Title
+- Description
+- Content
+- Created Date
+
+---
+
+### 3. Quiz Information
+
+Stores quiz questions for each module.
+
+Attributes:
+- Quiz ID
+- Module ID
+- Question
+- Option A
+- Option B
+- Option C
+- Option D
+- Correct Answer
+
+---
+
+### 4. Quiz Results
+
+Stores student quiz performance.
+
+Attributes:
+- Result ID
+- User ID
+- Quiz ID
+- Score
+- Attempt Date
+
+---
+
+### 5. Progress Tracking
+
+Tracks learning progress of students.
+
+Attributes:
+- Progress ID
+- User ID
+- Module ID
+- Completion Status
+- Last Accessed Date
+
+---
+
+## Database Tables
+
+### Users Table
+
+| Field Name | Data Type | Description |
+|------------|-----------|-------------|
+| user_id | SERIAL | Primary Key |
+| name | VARCHAR(100) | User Name |
+| email | VARCHAR(100) | Unique Email |
+| password | VARCHAR(255) | Encrypted Password |
+| role | VARCHAR(20) | Student/Admin |
+
+---
+
+### Modules Table
+
+| Field Name | Data Type | Description |
+|------------|-----------|-------------|
+| module_id | SERIAL | Primary Key |
+| title | VARCHAR(200) | Module Title |
+| description | TEXT | Module Description |
+| content | TEXT | Learning Content |
+
+---
+
+### Quiz Table
+
+| Field Name | Data Type | Description |
+|------------|-----------|-------------|
+| quiz_id | SERIAL | Primary Key |
+| module_id | INTEGER | Foreign Key |
+| question | TEXT | Quiz Question |
+| option_a | VARCHAR(255) | Option A |
+| option_b | VARCHAR(255) | Option B |
+| option_c | VARCHAR(255) | Option C |
+| option_d | VARCHAR(255) | Option D |
+| correct_answer | VARCHAR(255) | Correct Answer |
+
+---
+
+### Results Table
+
+| Field Name | Data Type | Description |
+|------------|-----------|-------------|
+| result_id | SERIAL | Primary Key |
+| user_id | INTEGER | Foreign Key |
+| quiz_id | INTEGER | Foreign Key |
+| score | INTEGER | Quiz Score |
+| attempt_date | TIMESTAMP | Date of Attempt |
+
+---
+
+### Progress Table
+
+| Field Name | Data Type | Description |
+|------------|-----------|-------------|
+| progress_id | SERIAL | Primary Key |
+| user_id | INTEGER | Foreign Key |
+| module_id | INTEGER | Foreign Key |
+| completion_status | VARCHAR(20) | Completed/In Progress |
+| last_accessed | TIMESTAMP | Last Accessed Date |
+
+---
+
+## Relationships
+
+1. One User can attempt many Quizzes.
+2. One Module can contain many Quiz Questions.
+3. One User can have multiple Progress Records.
+4. One Quiz Result belongs to one User.
+5. One Progress Record belongs to one Module.
+
+---
+
