@@ -475,3 +475,6 @@ Attributes:
 
 ## ER DIAGRAM
 IMAGE:https://github.com/rithika-art/let-s_learn_constitution/blob/main/docs/images/ER%20DIAGRAM.png
+
+## databse schema creation
+
