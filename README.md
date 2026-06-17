@@ -315,6 +315,5 @@ The user responsible for managing content, quizzes, and student records.
 
 ---
 
-## Expected Outcome
-
-The Use Case Diagram provides a clear visualization of how students and administrators interact with the Constitution Learning System and helps define the system's functional requirements.
+### use case diagram
+IMAGE:
