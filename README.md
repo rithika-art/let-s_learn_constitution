@@ -316,4 +316,4 @@ The user responsible for managing content, quizzes, and student records.
 ---
 
 ### use case diagram
-IMAGE:
+IMAGE:https://raw.githubusercontent.com/rithika-art/let-s_learn_constitution/refs/heads/main/docs/images/student%20use%20case%20diagram.jfif
