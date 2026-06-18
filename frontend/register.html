@@ -109,7 +109,7 @@ h2{
 
     <h2>Create Account</h2>
 
-    <form>
+    <form id="registerForm">
 
         <div class="input-box">
             <i class="fa-solid fa-user"></i>
@@ -153,6 +153,16 @@ h2{
     </form>
 
 </div>
+
+<script>
+document.getElementById("registerForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    alert("Registration Successful!");
+
+    window.location.href = "./login.html";
+});
+</script>
 
 </body>
 </html>

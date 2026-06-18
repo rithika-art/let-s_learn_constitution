@@ -23,35 +23,6 @@ body{
     justify-content:center;
     align-items:center;
     background:linear-gradient(135deg,#eef4ff,#dfefff);
-    overflow:hidden;
-}
-
-/* Background Decorative Boxes */
-
-body::before{
-    content:"";
-    position:absolute;
-    width:350px;
-    height:350px;
-    background:#0b4db8;
-    opacity:.08;
-    border-radius:30px;
-    top:-100px;
-    left:-100px;
-    transform:rotate(25deg);
-}
-
-body::after{
-    content:"";
-    position:absolute;
-    width:300px;
-    height:300px;
-    background:#0b4db8;
-    opacity:.08;
-    border-radius:30px;
-    bottom:-100px;
-    right:-100px;
-    transform:rotate(-25deg);
 }
 
 .container{
@@ -66,8 +37,6 @@ body::after{
     padding:40px;
     box-shadow:0 15px 40px rgba(0,0,0,0.12);
 }
-
-/* Logo */
 
 .logo{
     text-align:center;
@@ -105,8 +74,6 @@ h2{
     margin-bottom:25px;
 }
 
-/* Inputs */
-
 label{
     display:block;
     margin-bottom:8px;
@@ -135,8 +102,6 @@ label{
     font-size:15px;
 }
 
-/* Remember */
-
 .options{
     display:flex;
     justify-content:space-between;
@@ -151,8 +116,6 @@ label{
     font-weight:600;
 }
 
-/* Login Button */
-
 .login-btn{
     width:100%;
     margin-top:20px;
@@ -164,43 +127,17 @@ label{
     font-size:16px;
     font-weight:600;
     cursor:pointer;
-    transition:.3s;
 }
 
 .login-btn:hover{
     background:#083c8f;
 }
 
-/* Divider */
-
 .divider{
     text-align:center;
     margin:20px 0;
     color:#777;
-    position:relative;
 }
-
-.divider::before{
-    content:"";
-    position:absolute;
-    width:40%;
-    height:1px;
-    background:#ccc;
-    left:0;
-    top:50%;
-}
-
-.divider::after{
-    content:"";
-    position:absolute;
-    width:40%;
-    height:1px;
-    background:#ccc;
-    right:0;
-    top:50%;
-}
-
-/* Google Button */
 
 .google-btn{
     width:100%;
@@ -218,17 +155,14 @@ label{
     margin-right:8px;
 }
 
-/* Register */
-
 .register{
     text-align:center;
     margin-top:20px;
-    color:#555;
 }
 
 .register a{
-    text-decoration:none;
     color:#0b4db8;
+    text-decoration:none;
     font-weight:600;
 }
 
@@ -254,14 +188,15 @@ label{
         Login to continue your learning journey.
     </p>
 
-    <form>
+    <form id="loginForm">
 
         <label>Email or Username</label>
 
         <div class="input-box">
             <i class="fa-regular fa-user"></i>
             <input type="text"
-            placeholder="Enter your email or username">
+                   placeholder="Enter your email or username"
+                   required>
         </div>
 
         <label>Password</label>
@@ -269,8 +204,8 @@ label{
         <div class="input-box">
             <i class="fa-solid fa-lock"></i>
             <input type="password"
-            placeholder="Enter your password">
-            <i class="fa-regular fa-eye"></i>
+                   placeholder="Enter your password"
+                   required>
         </div>
 
         <div class="options">
@@ -287,23 +222,33 @@ label{
             Login
         </button>
 
-        <div class="divider">OR</div>
-
-        <button class="google-btn" type="button">
-            <i class="fa-brands fa-google"></i>
-            Login with Google
-        </button>
-
-        <div class="register">
-            Don't have an account?
-            <a href="#">Register here</a>
-        </div>
-
     </form>
 
+    <div class="divider">OR</div>
+
+    <button class="google-btn" type="button">
+        <i class="fa-brands fa-google"></i>
+        Login with Google
+    </button>
+
+    <div class="register">
+        Don't have an account?
+        <a href="register.html">Register here</a>
+    </div>
+
 </div>
 
 </div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    alert("Login Successful!");
+
+    window.location.href = "dashboard.html";
+});
+</script>
 
 </body>
 </html>
