@@ -1,0 +1,47 @@
+package com.constitution.backend.service;
+
+import com.constitution.backend.entity.Article;
+import com.constitution.backend.repository.ArticleRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class ArticleService {
+
+    private final ArticleRepository articleRepository;
+
+    public ArticleService(ArticleRepository articleRepository) {
+        this.articleRepository = articleRepository;
+    }
+
+    // Get all articles
+    public List<Article> getAllArticles() {
+        return articleRepository.findAll();
+    }
+
+    // Save article
+    public Article saveArticle(Article article) {
+        return articleRepository.save(article);
+    }
+
+    // Update article
+    public Article updateArticle(Long id, Article updatedArticle) {
+
+        Article article = articleRepository.findById(id).orElseThrow();
+
+        article.setArticleNumber(updatedArticle.getArticleNumber());
+        article.setTitle(updatedArticle.getTitle());
+        article.setPart(updatedArticle.getPart());
+        article.setChapter(updatedArticle.getChapter());
+        article.setContent(updatedArticle.getContent());
+        article.setKeywords(updatedArticle.getKeywords());
+
+        return articleRepository.save(article);
+    }
+
+    // Delete article
+    public void deleteArticle(Long id) {
+        articleRepository.deleteById(id);
+    }
+}
