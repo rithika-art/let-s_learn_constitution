@@ -19,6 +19,22 @@ public class ArticleService {
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
+    public Article getArticleByNumber(String articleNumber) {
+    return articleRepository.findByArticleNumber(articleNumber)
+            .orElseThrow(() -> new RuntimeException("Article not found"));
+}
+
+public List<Article> getArticlesByPart(String part) {
+    return articleRepository.findByPart(part);
+}
+
+public List<Article> getArticlesByChapter(String chapter) {
+    return articleRepository.findByChapter(chapter);
+}
+
+public List<Article> searchArticles(String keyword) {
+    return articleRepository.findByTitleContainingIgnoreCase(keyword);
+}
 
     // Save article
     public Article saveArticle(Article article) {

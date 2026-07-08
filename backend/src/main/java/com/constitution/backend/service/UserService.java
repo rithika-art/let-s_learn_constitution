@@ -7,6 +7,7 @@ import com.constitution.backend.security.JwtUtil;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -26,14 +27,16 @@ public class UserService {
     }
 
     public User registerUser(User user) {
-
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             throw new RuntimeException("Email already exists!");
         }
-
+        if (user.getRole() == null || user.getRole().isBlank()) {
+            user.setRole("USER");
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        return userRepository.save(user);
+        User saved = userRepository.save(user);
+        saved.setPassword(null);
+        return saved;
     }
 
     public String loginUser(LoginRequest loginRequest) {
@@ -49,5 +52,13 @@ public class UserService {
         }
 
         return "Invalid Password!";
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
     }
 }

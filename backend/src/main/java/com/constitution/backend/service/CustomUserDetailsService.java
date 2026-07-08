@@ -2,12 +2,11 @@ package com.constitution.backend.service;
 
 import com.constitution.backend.entity.User;
 import com.constitution.backend.repository.UserRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
@@ -26,10 +25,17 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .orElseThrow(() ->
                         new UsernameNotFoundException("User not found"));
 
+        String role = user.getRole();
+        if (role == null || role.isBlank()) {
+            role = "USER";
+        }
+        if (!role.startsWith("ROLE_")) {
+            role = "ROLE_" + role;
+        }
         return org.springframework.security.core.userdetails.User
-        .withUsername(user.getEmail())
-        .password(user.getPassword())
-        .roles(user.getRole())
-        .build();
+            .withUsername(user.getEmail())
+            .password(user.getPassword())
+            .authorities(new SimpleGrantedAuthority(role))
+            .build();
     }
 }
