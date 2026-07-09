@@ -18,9 +18,17 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public User getCurrentUser(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.replace("Bearer ", "");
-        String email = jwtUtil.extractEmail(token);
+    public User getCurrentUser(@RequestHeader(value = "Authorization", required = false) String authHeader,
+                               @RequestParam(value = "email", required = false) String emailParam) {
+        String email;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String token = authHeader.substring(7);
+            email = jwtUtil.extractEmail(token);
+        } else if (emailParam != null) {
+            email = emailParam;
+        } else {
+            throw new RuntimeException("Email or Authorization header required");
+        }
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         user.setPassword(null);

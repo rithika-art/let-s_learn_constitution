@@ -191,9 +191,10 @@ async function loadProgress() {
     }
 
     try {
-        const userResponse = await fetch("/users/me", {
-            headers: { "Authorization": "Bearer " + token }
-        });
+        const payload = JSON.parse(atob(token.split(".")[1]));
+        const email = payload.sub;
+
+        const userResponse = await fetch("/users/me?email=" + encodeURIComponent(email));
 
         if (!userResponse.ok) throw new Error("Failed to get user");
         const user = await userResponse.json();
