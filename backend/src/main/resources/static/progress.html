@@ -191,7 +191,7 @@ async function loadProgress() {
     }
 
     try {
-        const payload = JSON.parse(atob(token.split(".")[1]));
+        const payload = JSON.parse(atob(token.split(".")[1].replace(/-/g, '+').replace(/_/g, '/')));
         const email = payload.sub;
 
         const userResponse = await fetch("/users/me?email=" + encodeURIComponent(email));

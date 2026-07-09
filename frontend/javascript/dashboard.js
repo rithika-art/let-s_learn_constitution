@@ -9,7 +9,7 @@ async function loadDashboard() {
         return;
     }
 
-    const payload = JSON.parse(atob(token.split(".")[1]));
+    const payload = JSON.parse(atob(token.split(".")[1].replace(/-/g, '+').replace(/_/g, '/')));
     document.getElementById("username").innerText = payload.sub;
 
     const headers = {
