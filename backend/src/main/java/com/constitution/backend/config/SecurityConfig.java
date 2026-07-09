@@ -45,15 +45,23 @@ public class SecurityConfig {
 
         .requestMatchers("/auth/**").permitAll()
         .requestMatchers("/admin/**").hasRole("ADMIN")
-        .requestMatchers("/", "/*.html", "/css/**", "/javascript/**", "/h2-console/**").permitAll()
+        .requestMatchers("/", "/*.html", "/css/**", "/javascript/**",
+                         "/favicon.ico", "/h2-console/**").permitAll()
 
-        .requestMatchers(HttpMethod.GET, "/articles/**").authenticated()
+        .requestMatchers(HttpMethod.GET, "/articles/**",
+                         "/questions/**", "/leaderboard/**",
+                         "/users/me", "/progress/**",
+                         "/bookmarks/**").permitAll()
 
-        .requestMatchers(HttpMethod.POST, "/articles/**").authenticated()
+        .requestMatchers(HttpMethod.POST, "/articles/**",
+                         "/questions/**", "/leaderboard/**",
+                         "/progress/**", "/bookmarks/**").authenticated()
 
-             .requestMatchers(HttpMethod.PUT, "/articles/**").authenticated()
+        .requestMatchers(HttpMethod.PUT, "/articles/**",
+                         "/progress/**").authenticated()
 
-        .requestMatchers(HttpMethod.DELETE, "/articles/**").authenticated()
+        .requestMatchers(HttpMethod.DELETE, "/articles/**",
+                         "/questions/**", "/bookmarks/**").authenticated()
 
         .anyRequest().authenticated()
 )
