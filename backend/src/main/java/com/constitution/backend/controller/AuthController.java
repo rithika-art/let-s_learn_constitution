@@ -3,6 +3,8 @@ package com.constitution.backend.controller;
 import com.constitution.backend.dto.LoginRequest;
 import com.constitution.backend.entity.User;
 import com.constitution.backend.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,7 +23,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody LoginRequest loginRequest) {
-        return userService.loginUser(loginRequest);
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        try {
+            String token = userService.loginUser(loginRequest);
+            return ResponseEntity.ok(token);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 }

@@ -41,17 +41,14 @@ public class UserService {
 
     public String loginUser(LoginRequest loginRequest) {
 
-        Optional<User> user = userRepository.findByEmail(loginRequest.getEmail());
+        User user = userRepository.findByEmail(loginRequest.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found!"));
 
-        if (user.isEmpty()) {
-            return "User not found!";
+        if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+            return jwtUtil.generateToken(user.getEmail());
         }
 
-        if (passwordEncoder.matches(loginRequest.getPassword(), user.get().getPassword())) {
-            return jwtUtil.generateToken(user.get().getEmail());
-        }
-
-        return "Invalid Password!";
+        throw new RuntimeException("Invalid Password!");
     }
 
     public List<User> getAllUsers() {
