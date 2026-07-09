@@ -1,7 +1,6 @@
 package com.constitution.backend.controller;
 
 import com.constitution.backend.entity.Progress;
-import com.constitution.backend.entity.User;
 import com.constitution.backend.service.ProgressService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,9 @@ public class ProgressController {
         this.progressService = progressService;
     }
 
-    @GetMapping("/user")
-    public Optional<Progress> getProgressByUser(@RequestBody User user) {
-        return progressService.getProgressByUser(user);
+    @GetMapping("/user/{userId}")
+    public Optional<Progress> getProgressByUser(@PathVariable Long userId) {
+        return progressService.getProgressByUserId(userId);
     }
 
     @PostMapping

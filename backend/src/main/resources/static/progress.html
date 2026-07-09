@@ -180,7 +180,6 @@ body{
 </div>
 
 <script>
-const BASE_URL = "http://localhost:8081";
 const token = localStorage.getItem("token");
 
 async function loadProgress() {
@@ -192,7 +191,7 @@ async function loadProgress() {
     }
 
     try {
-        const userResponse = await fetch(BASE_URL + "/users/me", {
+        const userResponse = await fetch("/users/me", {
             headers: { "Authorization": "Bearer " + token }
         });
 
@@ -200,10 +199,10 @@ async function loadProgress() {
         const user = await userResponse.json();
 
         const [progressResponse, articlesResponse] = await Promise.all([
-            fetch(BASE_URL + "/progress/user/" + user.userId, {
+            fetch("/progress/user/" + user.userId, {
                 headers: { "Authorization": "Bearer " + token }
             }),
-            fetch(BASE_URL + "/articles", {
+            fetch("/articles", {
                 headers: { "Authorization": "Bearer " + token }
             })
         ]);

@@ -40,6 +40,9 @@ public List<Article> searchArticles(String keyword) {
     public Article saveArticle(Article article) {
         return articleRepository.save(article);
     }
+    public Article getArticleById(Long id) {
+    return articleRepository.findById(id).orElseThrow();
+}
 
     // Update article
     public Article updateArticle(Long id, Article updatedArticle) {

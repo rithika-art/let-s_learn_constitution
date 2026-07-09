@@ -51,6 +51,10 @@ public class ArticleController {
                                  @RequestBody Article article) {
         return articleService.updateArticle(id, article);
     }
+    @GetMapping("/{id}")
+public Article getArticleById(@PathVariable Long id) {
+    return articleService.getArticleById(id);
+}
 
     @DeleteMapping("/{id}")
     public String deleteArticle(@PathVariable Long id) {

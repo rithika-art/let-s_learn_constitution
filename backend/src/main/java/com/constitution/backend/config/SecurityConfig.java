@@ -45,22 +45,21 @@ public class SecurityConfig {
 
         .requestMatchers("/auth/**").permitAll()
         .requestMatchers("/admin/**").hasRole("ADMIN")
+        .requestMatchers("/", "/index.html", "/login.html", "/register.html",
+                         "/css/**", "/javascript/**", "/h2-console/**").permitAll()
 
-        .requestMatchers(HttpMethod.GET, "/articles/**")
-.authenticated()
+        .requestMatchers(HttpMethod.GET, "/articles/**").authenticated()
 
-        .requestMatchers(HttpMethod.POST, "/articles/**")
-.authenticated()
+        .requestMatchers(HttpMethod.POST, "/articles/**").authenticated()
 
-             .requestMatchers(HttpMethod.PUT, "/articles/**")
-.authenticated()
+             .requestMatchers(HttpMethod.PUT, "/articles/**").authenticated()
 
-        .requestMatchers(HttpMethod.DELETE, "/articles/**")
-.authenticated()
+        .requestMatchers(HttpMethod.DELETE, "/articles/**").authenticated()
 
         .anyRequest().authenticated()
 )
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
     }
@@ -68,7 +67,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "http://127.0.0.1:3000"));
+        configuration.setAllowedOriginPatterns(List.of("*"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

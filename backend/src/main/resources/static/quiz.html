@@ -188,7 +188,6 @@ body{
 </div>
 
 <script>
-const BASE_URL = "http://localhost:8081";
 const token = localStorage.getItem("token");
 
 let questions = [];
@@ -203,7 +202,7 @@ async function loadQuestions() {
     }
 
     try {
-        const response = await fetch(BASE_URL + "/questions", {
+        const response = await fetch("/questions", {
             headers: { "Authorization": "Bearer " + token }
         });
 
@@ -305,7 +304,7 @@ function submitQuiz() {
 async function saveScore(score, total) {
 
     try {
-        const userResponse = await fetch(BASE_URL + "/users/me", {
+        const userResponse = await fetch("/users/me", {
             headers: { "Authorization": "Bearer " + token }
         });
 
@@ -313,7 +312,7 @@ async function saveScore(score, total) {
 
         const user = await userResponse.json();
 
-        await fetch(BASE_URL + "/leaderboard", {
+        await fetch("/leaderboard", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

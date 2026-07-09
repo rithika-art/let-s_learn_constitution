@@ -1,7 +1,6 @@
 package com.constitution.backend.controller;
 
 import com.constitution.backend.entity.Bookmark;
-import com.constitution.backend.entity.User;
 import com.constitution.backend.service.BookmarkService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +16,9 @@ public class BookmarkController {
         this.bookmarkService = bookmarkService;
     }
 
-    @GetMapping("/user")
-    public List<Bookmark> getBookmarksByUser(@RequestBody User user) {
-        return bookmarkService.getBookmarksByUser(user);
+    @GetMapping("/user/{userId}")
+    public List<Bookmark> getBookmarksByUser(@PathVariable Long userId) {
+        return bookmarkService.getBookmarksByUserId(userId);
     }
 
     @PostMapping

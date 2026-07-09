@@ -1,0 +1,119 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article Details</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    padding:30px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    color:#1e3a8a;
+    margin-bottom:20px;
+}
+
+h2{
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.info{
+    margin-bottom:15px;
+}
+
+.content{
+    line-height:1.8;
+    margin-top:20px;
+    color:#444;
+}
+
+.keyword{
+    margin-top:20px;
+    font-weight:bold;
+    color:#2563eb;
+}
+
+.back{
+    display:inline-block;
+    margin-top:25px;
+    text-decoration:none;
+    background:#2563eb;
+    color:white;
+    padding:10px 20px;
+    border-radius:8px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1 id="articleNumber"></h1>
+
+<h2 id="title"></h2>
+
+<div class="info">
+<b>Part :</b>
+<span id="part"></span>
+</div>
+
+<div class="info">
+<b>Chapter :</b>
+<span id="chapter"></span>
+</div>
+
+<div class="content" id="content">
+
+</div>
+
+<div class="keyword">
+Keywords :
+<span id="keywords"></span>
+</div>
+
+<a href="lessons.html" class="back">
+← Back to Lessons
+</a>
+
+</div>
+
+</div>
+
+<script src="javascript/article.js"></script>
+
+</body>
+</html>
+```

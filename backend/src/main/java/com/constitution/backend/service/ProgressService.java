@@ -1,7 +1,6 @@
 package com.constitution.backend.service;
 
 import com.constitution.backend.entity.Progress;
-import com.constitution.backend.entity.User;
 import com.constitution.backend.repository.ProgressRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,8 @@ public class ProgressService {
         this.progressRepository = progressRepository;
     }
 
-    public Optional<Progress> getProgressByUser(User user) {
-        return progressRepository.findByUser(user);
+    public Optional<Progress> getProgressByUserId(Long userId) {
+        return progressRepository.findByUserUserId(userId);
     }
 
     public Progress saveProgress(Progress progress) {
