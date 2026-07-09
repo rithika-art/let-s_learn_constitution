@@ -45,8 +45,7 @@ public class SecurityConfig {
 
         .requestMatchers("/auth/**").permitAll()
         .requestMatchers("/admin/**").hasRole("ADMIN")
-        .requestMatchers("/", "/index.html", "/login.html", "/register.html",
-                         "/css/**", "/javascript/**", "/h2-console/**").permitAll()
+        .requestMatchers("/", "/*.html", "/css/**", "/javascript/**", "/h2-console/**").permitAll()
 
         .requestMatchers(HttpMethod.GET, "/articles/**").authenticated()
 
