@@ -1,10 +1,11 @@
 services:
   - type: web
     name: lets-learn-constitution
-    env: java
-    region: singapore
-    buildCommand: cd backend && ./mvnw clean package -DskipTests
+    runtime: java
+    region: oregon
+    buildCommand: cd backend && chmod +x mvnw && ./mvnw clean package -DskipTests
     startCommand: cd backend && java -jar target/backend-0.0.1-SNAPSHOT.jar
+    healthCheckPath: /
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
@@ -30,11 +31,10 @@ services:
           property: password
       - key: JWT_SECRET
         generateValue: true
-        length: 64
 
 databases:
   - name: constitution-db
-    region: singapore
+    region: oregon
     plan: free
     databaseName: constitution
     user: constitution_user
