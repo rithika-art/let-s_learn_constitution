@@ -249,7 +249,7 @@ async function loadProgress() {
     } catch (e) {
         document.getElementById("loading").style.display = "none";
         document.getElementById("error").style.display = "block";
-        document.getElementById("error").innerText = "Error loading progress. Make sure the backend is running.";
+        document.getElementById("error").innerText = "Error: " + e.message;
         console.log("Progress Error:", e);
     }
 }
