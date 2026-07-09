@@ -53,7 +53,7 @@ async function loadArticles() {
         });
 
     } catch (e) {
-        container.innerHTML = '<div style="text-align:center;padding:40px;color:#dc2626"><p>Error loading articles. Make sure you are logged in.</p><p style="font-size:14px;margin-top:10px"><a href="login.html" style="color:#2563eb;">Go to Login</a></p></div>';
+        container.innerHTML = '<div style="text-align:center;padding:40px;color:#dc2626"><p>Error: ' + e.message + '</p><p style="font-size:14px;margin-top:10px"><a href="login.html" style="color:#2563eb;">Go to Login</a></p></div>';
     }
 }
 
